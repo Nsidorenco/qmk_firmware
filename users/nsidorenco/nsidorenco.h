@@ -5,7 +5,7 @@
 #include "features/caps_word.h"
 #include "features/adaptive_keys.h"
 #include "features/oneshot.h"
-#include "features/achordion.c"
+#include "features/achordion.h"
 
 enum layers {
     _BASE,

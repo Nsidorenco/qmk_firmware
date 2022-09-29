@@ -145,6 +145,15 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     }
 }
 
+bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode, keyrecord_t* other_record) {
+
+  if (other_record->event.key.row % (MATRIX_ROWS / 2) == 4) { return true; }
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) { return 400; }
+
 #define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
 uint16_t last_keycode = KC_NO;
 uint8_t last_modifier = 0;
