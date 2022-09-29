@@ -3,7 +3,6 @@ KO(del_lt_override, MOD_MASK_SHIFT, LT_BSPC, KC_DEL)
 KO(semicol_override, MOD_MASK_SHIFT, DK_COLN, DK_SCOLN)
 
 KO(dot_override, MOD_MASK_SHIFT, KC_DOT, DK_AMPR)
-/* KO(slsh_override, MOD_MASK_SHIFT, DK_SLSH, DK_ASTR) */
 KO(dquot_override, MOD_MASK_SHIFT, DK_DQT, DK_QUES)
 KO(quot_override, MOD_MASK_SHIFT, DK_SQT, KC_EXLM)
 KO(comm_override, MOD_MASK_SHIFT, KC_COMM, DK_BAR)

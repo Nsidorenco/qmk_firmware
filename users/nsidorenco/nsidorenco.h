@@ -5,12 +5,15 @@
 #include "features/caps_word.h"
 #include "features/adaptive_keys.h"
 #include "features/oneshot.h"
+#include "features/achordion.c"
 
-#define _BASE 0
-#define _NUM 1
-#define _NAVR 2
-#define _SYM 3
-#define _MOUR 4
+enum layers {
+    _BASE,
+    _NUM,
+    _NAVR,
+    _SYM,
+    _MOUR,
+};
 
 #define LT_ESC LT(_SYM, KC_ESC)
 #define LT_R LT(_NAVR, KC_R)

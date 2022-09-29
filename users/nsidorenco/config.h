@@ -17,19 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define USE_I2C
+// #define USE_I2C
 #define EE_HANDS
 
 // Commands per tick on encoder
 #define ENCODER_RESOLUTION 4
 
 #define TAPPING_TERM 180
-#define HOLD_ON_OTHER_PRESS
+// #define HOLD_ON_OTHER_PRESS
 #define IGNORE_MOD_TAP_INTERRUPT
-
-#define NO_AUTO_SHIFT_ALPHA
-#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
-#define AUTO_SHIFT_NO_SETUP
 
 #define COMBO_STRICT_TIMER
 #define EXTRA_SHORT_COMBOS
