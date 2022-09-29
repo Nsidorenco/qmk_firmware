@@ -1,0 +1,9 @@
+//   name     result    chord keys
+COMB(q_combo, KC_Q, LT_U, KC_Y)
+COMB(z_combo, KC_Z, KC_D, KC_F)
+COMB(ae_combo, DK_AA, KC_DOT, MY_SLSH)
+COMB(oe_combo, DK_OE, KC_DOT, DK_DQT)
+COMB(aa_combo, DK_AE,  MY_SLSH, DK_DQT)
+COMB(tab_combo, KC_TAB, KC_P, KC_V)
+SUBS(au_combo, "au", KC_COMM, MT_A)
+SUBS(th_combo, "th", MT_T, MT_N)
