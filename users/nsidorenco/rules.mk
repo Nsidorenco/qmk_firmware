@@ -9,7 +9,7 @@ VPATH += keyboards/gboards
 
 SPLIT_KEYBOARD = yes
 
-AUTO_SHIFT_ENABLE = yes
+AUTO_SHIFT_ENABLE = no
 RGBLIGHT_ENABLE = no
 BACKLIGHT_ENABLE = no
 LTO_ENABLE = yes

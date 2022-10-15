@@ -12,7 +12,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX,  KC_X,    KC_F,    KC_L,    KC_D,    KC_B,    KC_MPLY,          KC_LCMD, DK_COLN, LT_U,    KC_O,    KC_Y,    KC_K,    XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                           KC_BSPC, LT_R,   KC_ENT,                    LT_ESC,  KC_SPC,  XXXXXXX
+                                           KC_ESC,  LT_R,   KC_BSPC,                   MO(_SYM), KC_SPC,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, DF(_NAVR), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                           XXXXXXX, DF(_BASE), XXXXXXX,                 KC_ENT, KC_BSPC,  OS_SHFT
+                                           XXXXXXX, DF(_BASE), XXXXXXX,                 KC_BSPC, KC_ENT, OS_SHFT
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
