@@ -17,11 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-// #define USE_I2C
-#define EE_HANDS
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+#define NO_ACTION_ONESHOT
 
 // Commands per tick on encoder
+#if defined(ENCODER_ENABLE)
 #define ENCODER_RESOLUTION 4
+#endif
 
 #define TAPPING_TERM 180
 // #define HOLD_ON_OTHER_PRESS

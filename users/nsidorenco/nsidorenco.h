@@ -2,9 +2,9 @@
 
 #include QMK_KEYBOARD_H
 
-#include "features/caps_word.h"
+// #include "features/caps_word.h"
 #include "features/adaptive_keys.h"
-#include "features/oneshot.h"
+// #include "features/oneshot.h"
 #include "features/achordion.h"
 
 enum layers {
@@ -15,12 +15,9 @@ enum layers {
     _MOUR,
 };
 
-#define LT_ESC LT(_SYM, KC_ESC)
 #define LT_R LT(_NAVR, KC_R)
-#define LT_TAB LT(_MOUR, KC_TAB)
-#define LT_BSPC LT(_NUM, KC_BSPC)
 #define LT_U LT(_NUM, KC_U)
-#define LT_ENT LT(_SYM, KC_ENT)
+#define LT_F LT(_MOUR, KC_F)
 
 #define UC_CUT C(KC_X)
 #define UC_CPY C(KC_C)
@@ -51,23 +48,25 @@ enum layers {
 enum tap_dance_keycodes {
     TD_DIAM = 0,
     TD_ARROW,
+    TD_RESET,
 };
 
 enum custom_keycodes {
-    DK_CIRC = SAFE_RANGE,
-    OS_SHFT,
-    OS_CTRL,
-    OS_ALT,
-    OS_LALT,
-    OS_CMD,
+    DK_CIRC = CHARYBDIS_SAFE_RANGE,
     REPEAT,
 
     MY_SLSH,
     MY_MINS,
 };
 
+#define DRAG DRAGSCROLL_MODE
+#define SNIPE SNIPING_MODE
+#define INCDPI POINTER_DEFAULT_DPI_FORWARD
+#define DECDPI POINTER_DEFAULT_DPI_REVERSE
+
 #define ARROWS TD(TD_ARROW)
 #define DIAMS TD(TD_DIAM)
+#define SAFE_RST TD(TD_RESET)
 
 #define DK_TILDE ALGR(KC_RBRC)
 #define DK_LPRN S(KC_8)
