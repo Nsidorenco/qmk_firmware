@@ -29,10 +29,9 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 */
                 case KC_M: // M becomes L after DFGKPVW
                     switch (prior_keycode) {
-                        case KC_F:
+                        case KC_G:
                         case KC_P:
                         case KC_V:
-                        case KC_W:
                             tap_code(KC_L);
                             return_state = false; // done.
                             break;
@@ -67,26 +66,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 //     }
                 //     break;
 
-                case KC_V: // for Neu
-                case KC_X: // adjacent fingers don't do next row as easily,especially on ring to pinky.
-                    switch (prior_keycode) {
-                        case KC_B: //
-                        case KC_C: // RING TO PINKY This softens the burden,
-                        case KC_D: //
-                        case KC_F: // and equalizes column-stagger & ortho boards.
-                        case KC_M: // anything that is statistically much more frequent
-                        case KC_P: // bc why not?
-                        case KC_W: //
-                            tap_code16(KC_R);
-                            return_state = false; // done.
-                            break;
-                        case KC_L: // L repeater (Platinum/Neu-lx)
-                            tap_code(prior_keycode); // LW isn't likely, so we'll leave it for the sake of smaller code
-                            return_state = false; // done.
-                            break;
-                    }
-                    break;
-
 /*
 // right hand adaptives
 */
@@ -99,16 +78,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                             return_state = false; // done.
                             break;
                     }
-                    break;
-                case KC_U:
-                    switch (prior_keycode) {
-                        case KC_Y: // YU = You bc YO is a tad awk, but yu is easy, and uncommon
-                            tap_code(KC_O);
-                            tap_code(KC_U);
-                            tap_code(KC_SPC);
-                            return_state = false; // done.
-                            break;
-                   }
                     break;
                 case KC_COMM:
                     switch (prior_keycode) {

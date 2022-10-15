@@ -1,5 +1,4 @@
 KO(del_override, MOD_MASK_SHIFT, KC_BSPC, KC_DEL)
-KO(del_lt_override, MOD_MASK_SHIFT, LT_BSPC, KC_DEL)
 KO(semicol_override, MOD_MASK_SHIFT, DK_COLN, DK_SCOLN)
 
 KO(dot_override, MOD_MASK_SHIFT, KC_DOT, DK_AMPR)
