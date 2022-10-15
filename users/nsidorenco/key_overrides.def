@@ -1,0 +1,10 @@
+KO(del_override, MOD_MASK_SHIFT, KC_BSPC, KC_DEL)
+KO(semicol_override, MOD_MASK_SHIFT, DK_COLN, DK_SCOLN)
+
+KO(dot_override, MOD_MASK_SHIFT, KC_DOT, DK_AMPR)
+KO(dquot_override, MOD_MASK_SHIFT, DK_DQT, DK_QUES)
+KO(quot_override, MOD_MASK_SHIFT, DK_SQT, KC_EXLM)
+KO(comm_override, MOD_MASK_SHIFT, KC_COMM, DK_BAR)
+
+KO(eql_mac, MOD_MASK_GUI, DK_EQL, LGUI(KC_0))
+KO(eql_win, MOD_MASK_CTRL, DK_EQL, LCTL(KC_0))
