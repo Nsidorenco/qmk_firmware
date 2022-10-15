@@ -77,6 +77,28 @@ uint16_t linger_key        = 0;  // keycode for linger actions (ex. "Qu")
 uint32_t linger_timer      = 0;  // time to hold a key before something else happens.
 uint32_t state_reset_timer = 0;  // time to leave a state active before shutting it down automatically.
 
+#if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case DRAG:
+            return true;
+        case SNIPE:
+            return true;
+        case INCDPI:
+            return true;
+        case DECDPI:
+            return true;
+        default:
+            return false;
+    }
+    return is_mouse_record_user(keycode, record);
+}
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MOUR);
+    set_auto_mouse_enable(true);
+}
+#endif
+
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
