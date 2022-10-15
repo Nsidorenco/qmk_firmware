@@ -13,11 +13,12 @@ enum layers {
     _NAVR,
     _SYM,
     _MOUR,
+    _SPEC,
 };
 
 #define LT_R LT(_NAVR, KC_R)
 #define LT_U LT(_NUM, KC_U)
-#define LT_F LT(_MOUR, KC_F)
+#define LT_F LT(_SPEC, KC_F)
 
 #define UC_CUT C(KC_X)
 #define UC_CPY C(KC_C)

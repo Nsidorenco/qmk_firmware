@@ -71,6 +71,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        KC_MS_BTN2,KC_MS_BTN1,KC_MS_BTN3,             KC_MS_BTN2,KC_MS_BTN1, XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
+
+    [_SPEC] = LAYOUT_nsidorenco(
+        //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+           RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX, DK_AE,   DK_OE,   DK_AA,   XXXXXXX, XXXXXXX,
+        //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, KC_LSFT, KC_LCTL, KC_LCMD, KC_LALT, XXXXXXX,
+        //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_Q,    KC_Z,   XXXXXXX, XXXXXXX, XXXXXXX,
+        //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                           XXXXXXX,XXXXXXX,XXXXXXX,                     XXXXXXX,XXXXXXX, XXXXXXX
+                                      // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+        ),
 };
 
 uint16_t linger_key        = 0;  // keycode for linger actions (ex. "Qu")
@@ -284,6 +298,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code(KC_DEL);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case DK_COLN:
@@ -291,6 +306,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(DK_SCOLN);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case KC_DOT:
@@ -298,6 +314,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(DK_AMPR);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case DK_DQT:
@@ -305,6 +322,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(DK_QUES);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case DK_SQT:
@@ -312,6 +330,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(KC_EXLM);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case KC_COMM:
@@ -319,6 +338,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(DK_BAR);
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
             case DK_EQL:
@@ -326,10 +346,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     clear_mods();
                     tap_code16(LGUI(KC_0));
                     set_mods(mod_state);
+                    return_state = false;
                 } else if (mod_state & MOD_MASK_CTRL) {
                     clear_mods();
                     tap_code16(LCTL(KC_0));
                     set_mods(mod_state);
+                    return_state = false;
                 }
                 break;
 #endif
