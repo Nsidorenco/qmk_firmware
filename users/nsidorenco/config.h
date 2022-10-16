@@ -36,8 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_STRICT_TIMER
 #define EXTRA_SHORT_COMBOS
 #define COMBO_TERM (TAPPING_TERM/6) // time to get all combo keys down
-#define COMBO_HOLD (COMBO_TERM*1.6) // time to hold to trigger delayed combo
+#define COMBO_HOLD (COMBO_TERM*1.8) // time to hold to trigger delayed combo
 
-#define ADAPTIVE_TERM COMBO_HOLD
+#define ADAPTIVE_TERM (COMBO_HOLD * 1.5)
 
 #define LINGER_TIME TAPPING_TERM * 1.4
