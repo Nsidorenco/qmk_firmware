@@ -4,7 +4,7 @@ INTROSPECTION_KEYMAP_C = nsidorenco.c
 
 # SRC += features/caps_word.c
 SRC += features/adaptive_keys.c
-# SRC += features/oneshot.c
+SRC += features/oneshot.c
 SRC += features/achordion.c
 
 SPLIT_KEYBOARD = yes

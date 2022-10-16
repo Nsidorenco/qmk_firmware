@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, KC_HASH, DK_CIRC, DK_DLLR, DK_LBRC, DK_RBRC,                            XXXXXXX, REPEAT,  XXXXXXX, XXXXXXX, KC_COLN, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           XXXXXXX, DK_TILDE,DK_AT,   KC_PERC, DK_LPRN, DK_RPRN,                            XXXXXXX, KC_LSFT, KC_LCTRL,KC_LCMD, KC_LALT,  XXXXXXX,
+           XXXXXXX, DK_TILDE,DK_AT,   KC_PERC, DK_LPRN, DK_RPRN,                            XXXXXXX, OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,   XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, DK_TICK, ARROWS,  DIAMS,   DK_LBKT, DK_RBKT, XXXXXXX,          XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  XXXXXXX, DF(_SYM), XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             DK_PLUS, DK_LBRC, KC_6,    KC_5,    KC_4,    KC_BSPC,                           XXXXXXX, REPEAT,  XXXXXXX, XXXXXXX, KC_COLN, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_DQUO, DK_LT,   KC_3,    KC_2,    KC_1,    DK_GT,                             KC_SPC,  KC_LSFT, KC_LCTRL,KC_LCMD, KC_LALT, KC_BSPC,
+            KC_DQUO, DK_LT,   KC_3,    KC_2,    KC_1,    DK_GT,                             KC_SPC,  OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,  KC_BSPC,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             DK_BSLS, DK_LBKT, KC_9,    KC_8,    KC_7,    DK_RBKT, XXXXXXX,         XXXXXXX, KC_ENT,  XXXXXXX, XXXXXXX, XXXXXXX, DF(_NUM), XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, SAFE_RST,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX, KC_RALT, KC_LCMD, KC_LCTRL,KC_LSFT, XXXXXXX,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
+            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, XXXXXXX,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, DF(_NAVR),XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -62,13 +62,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
            RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, _______, _______, _______, INCDPI,  DECDPI,                             _______, _______,   _______,   _______,   _______, _______,
+           _______, _______, _______, _______, INCDPI,  DECDPI,                             _______, _______,  _______, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, _______, _______, DRAG,    SNIPE,    _______, _______,           _______, _______, _______,    _______,   _______, _______, _______,
+           _______, _______, _______, DRAG,    SNIPE,    _______, _______,         _______, _______, _______,  _______, _______, _______, _______,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                       KC_MS_BTN2,KC_MS_BTN1,KC_MS_BTN3,                _______, _______,  _______
+                                           KC_BTN2, KC_BTN1, KC_BTN3,                  _______, _______,  _______
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                             XXXXXXX, DK_AE,   DK_OE,   DK_AA,   XXXXXXX, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, KC_LSFT, KC_LCTL, KC_LCMD, KC_LALT, XXXXXXX,
+           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_Q,    KC_Z,   XXXXXXX, XXXXXXX, XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -182,35 +182,36 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_RESET] = ACTION_TAP_DANCE_FN(td_reset),
 };
 
-// bool is_oneshot_cancel_key(uint16_t keycode) {
-//     switch (keycode) {
-//         case LT_R:
-//         case MO(_SYM):
-//             return true;
-//         default:
-//             return false;
-//     }
-// }
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+        case LT_R:
+        case MO(_SYM):
+            return true;
+        default:
+            return false;
+    }
+}
 
-// bool is_oneshot_ignored_key(uint16_t keycode) {
-//     switch (keycode) {
-//         case LT_R:
-//         case MO(_SYM):
-//         case OS_SHFT:
-//         case OS_CTRL:
-//         case OS_ALT:
-//         case OS_LALT:
-//         case OS_CMD:
-//             return true;
-//         default:
-//             return false;
-//     }
-// }
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+        case LT_R:
+        case MO(_SYM):
+        case OS_SHFT:
+        case OS_CTRL:
+        case OS_ALT:
+        case OS_LALT:
+        case OS_CMD:
+            return true;
+        default:
+            return false;
+    }
+}
 
 bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
                      uint16_t other_keycode, keyrecord_t* other_record) {
 
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) == 4) { return true; }
+  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) == (MATRIX_ROWS / 2) - 1) { return true; }
+  // if (tap_hold_record->event.key.row == 3) { return true; }
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
 
@@ -221,7 +222,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) { return 400; }
 // uint8_t last_modifier = 0;
 //
 uint8_t mod_state;
-// // uint8_t oneshot_mod_state;
+// uint8_t oneshot_mod_state;
 //
 // void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
 //     if (keycode != REPEAT) {
@@ -265,11 +266,11 @@ uint8_t mod_state;
 //     }
 // }
 
-// oneshot_state os_shft_state = os_up_unqueued;
-// oneshot_state os_ctrl_state = os_up_unqueued;
-// oneshot_state os_alt_state = os_up_unqueued;
-// oneshot_state os_lalt_state = os_up_unqueued;
-// oneshot_state os_cmd_state = os_up_unqueued;
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_lalt_state = os_up_unqueued;
+oneshot_state os_cmd_state = os_up_unqueued;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     bool return_state = true;
@@ -281,11 +282,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     // process_repeat_key(keycode, record);
 
-    // update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
-    // update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
-    // update_oneshot(&os_alt_state, KC_RALT, OS_ALT, keycode, record);
-    // update_oneshot(&os_lalt_state, KC_LALT, OS_LALT, keycode, record);
-    // update_oneshot(&os_cmd_state, KC_LCMD, OS_CMD, keycode, record);
+    update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
+    update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
+    update_oneshot(&os_alt_state, KC_RALT, OS_ALT, keycode, record);
+    update_oneshot(&os_lalt_state, KC_LALT, OS_LALT, keycode, record);
+    update_oneshot(&os_cmd_state, KC_LCMD, OS_CMD, keycode, record);
 
     if (!process_achordion(keycode, record)) { return false; }
     if (!process_adaptive_key(keycode, record)) { return false; }

@@ -4,7 +4,7 @@
 
 // #include "features/caps_word.h"
 #include "features/adaptive_keys.h"
-// #include "features/oneshot.h"
+#include "features/oneshot.h"
 #include "features/achordion.h"
 
 enum layers {
@@ -56,6 +56,11 @@ enum tap_dance_keycodes {
 enum custom_keycodes {
     DK_CIRC = CHARYBDIS_SAFE_RANGE,
     REPEAT,
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_LALT,
+    OS_CMD,
 
     MY_SLSH,
     MY_MINS,
