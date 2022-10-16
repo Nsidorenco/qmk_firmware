@@ -136,16 +136,24 @@ bool caps_word_press_user(uint16_t keycode) {
 
 void td_arrow(qk_tap_dance_state_t *state, void *user_data) {
     uint8_t mod_state = get_mods();
+    bool is_shifted = (mod_state & MOD_MASK_SHIFT);
     // uint8_t oneshot_mod_state = get_oneshot_mods();
     clear_mods();
     // clear_oneshot_mods();
     if (state->count == 1) {
-        tap_code(KC_SLSH);
+        if (is_shifted) {
+            tap_code16(DK_EQL);
+        } else {
+            tap_code(KC_SLSH);
+        }
         tap_code16(DK_GT);
     } else {
         tap_code16(DK_LT);
-        tap_code(KC_SLSH);
-
+        if (is_shifted) {
+            tap_code16(DK_EQL);
+        } else {
+            tap_code(KC_SLSH);
+        }
     }
     set_mods(mod_state);
     // set_oneshot_mods(oneshot_mod_state);
