@@ -368,7 +368,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
                 auto_mouse_layer_off();
 #endif
-                layer_clear();
+                layer_move(_BASE);
                 break;
             case MY_MINS:
                 if (is_shifted) {
