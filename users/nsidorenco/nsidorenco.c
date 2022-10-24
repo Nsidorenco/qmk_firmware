@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, DK_TILDE,DK_AT,   KC_PERC, DK_LPRN, DK_RPRN,                            XXXXXXX, OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,   XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           XXXXXXX, DK_TICK, ARROWS,  DIAMS,   DK_LBKT, DK_RBKT, XXXXXXX,          XXXXXXX, XXXXXXX, KC_ENT,  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX,
+           XXXXXXX, DK_TICK, ARROWS,  DIAMS,   DK_LBKT, DK_RBKT, XXXXXXX,          XXXXXXX, AM_END,  KC_ENT,  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                           DK_BSLS, DK_EQL,  DK_UNDS,                   XXXXXXX, XXXXXXX, XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -369,6 +369,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 auto_mouse_layer_off();
 #endif
                 layer_move(_BASE);
+                return_state = false;
                 break;
             case MY_MINS:
                 if (is_shifted) {
