@@ -20,6 +20,7 @@ enum layers {
 #define LT_U LT(_NUM, KC_U)
 #define LT_F LT(_SPEC, KC_F)
 #define LT_ENT LT(_SYM, KC_ENT)
+#define LT_X LT(_MOUR, KC_X)
 
 #define UC_CUT C(KC_X)
 #define UC_CPY C(KC_C)
