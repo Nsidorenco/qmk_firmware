@@ -54,6 +54,10 @@ enum tap_dance_keycodes {
     TD_RESET,
 };
 
+#if !defined(CHARKBDIS_SAFE_RANGE)
+#define CHARYBDIS_SAFE_RANGE SAFE_RANGE
+#endif
+
 enum custom_keycodes {
     DK_CIRC = CHARYBDIS_SAFE_RANGE,
     AM_END,
@@ -68,10 +72,18 @@ enum custom_keycodes {
     MY_MINS,
 };
 
-#define DRAG DRAGSCROLL_MODE
-#define SNIPE SNIPING_MODE
-#define DPI POINTER_DEFAULT_DPI_FORWARD
-#define SDPI POINTER_SNIPING_DPI_FORWARD
+#if !defined(DRAGSCROLL_MODE)
+#define DRAG KC_NO
+#endif
+#if !defined(SNIPING_MODE)
+#define SNIPE KC_NO
+#endif
+#if !defined(POINTER_DEFAULT_DPI_FORWARD)
+#define DPI KC_NO
+#endif
+#if !defined(POINTER_SNIPING_DPI_FORWARD)
+#define SDPI KC_NO
+#endif
 
 #define ARROWS TD(TD_ARROW)
 #define DIAMS TD(TD_DIAM)

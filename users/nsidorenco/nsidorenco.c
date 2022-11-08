@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAVR] = LAYOUT_nsidorenco(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-            RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+            XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX,SAFE_RST,TO(_MOUR),XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -54,13 +54,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                           XXXXXXX, XXXXXXX, XXXXXXX,                  KC_TAB,  KC_ENT,  KC_SFT
+                                           XXXXXXX, XXXXXXX, XXXXXXX,                  KC_TAB,  KC_ENT,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
     [_MOUR] = LAYOUT_nsidorenco(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-           RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+           XXXXXXX,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            _______, _______, _______, KC_BTN3,  DPI,     SDPI,                               _______, _______, _______, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_SPEC] = LAYOUT_nsidorenco(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-           RESET,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+           XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                            KC_VOLU, DK_AE,   DK_OE,   DK_AA,   XXXXXXX, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -472,7 +472,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     OE_COMBO,
     AA_COMBO,
     TAB_COMBO,
-    RESET_COMBO,
+    // RESET_COMBO,
     COMBO_LENGTH
   };
   uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -482,7 +482,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
   const uint16_t PROGMEM OE_combo[] = {KC_DOT, DK_DQT, COMBO_END};
   const uint16_t PROGMEM AA_combo[] = {MY_SLSH, DK_DQT, COMBO_END};
   const uint16_t PROGMEM TAB_combo[] = {KC_P, KC_V, COMBO_END};
-  const uint16_t PROGMEM RESET_combo[] = {KC_X, KC_K, COMBO_END};
+  // const uint16_t PROGMEM RESET_combo[] = {KC_X, KC_K, COMBO_END};
   combo_t key_combos[] = {
     [Q_COMBO] = COMBO(Q_combo, KC_Q),
     [Z_COMBO] = COMBO(Z_combo, KC_Z),
@@ -490,7 +490,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     [OE_COMBO] = COMBO(OE_combo, DK_OE),
     [AA_COMBO] = COMBO(AA_combo, DK_AA),
     [TAB_COMBO] = COMBO(TAB_combo, KC_TAB),
-    [RESET_COMBO] = COMBO(RESET_combo, RESET),
+    // [RESET_COMBO] = COMBO(RESET_combo, RESET),
   };
 // #    include "g/keymap_combo.h"  // to make combo def dictionary work
 #endif
