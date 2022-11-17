@@ -72,18 +72,26 @@ enum custom_keycodes {
     MY_MINS,
 };
 
-#if !defined(DRAGSCROLL_MODE)
-#define DRAG KC_NO
-#endif
-#if !defined(SNIPING_MODE)
-#define SNIPE KC_NO
-#endif
-#if !defined(POINTER_DEFAULT_DPI_FORWARD)
-#define DPI KC_NO
-#endif
-#if !defined(POINTER_SNIPING_DPI_FORWARD)
-#define SDPI KC_NO
-#endif
+// #if !defined(DRAGSCROLL_MODE)
+// #define DRAG KC_NO
+// #else
+#define DRAG DRAGSCROLL_MODE
+// #endif
+// #if !defined(SNIPING_MODE)
+// #define SNIPE KC_NO
+// #else
+#define SNIPE SNIPING_MODE
+// #endif
+// #if !defined(POINTER_DEFAULT_DPI_FORWARD)
+// #define DPI KC_NO
+// #else
+#define DPI POINTER_DEFAULT_DPI_FORWARD
+// #endif
+// #if !defined(POINTER_SNIPING_DPI_FORWARD)
+// #define SDPI KC_NO
+// #else
+#define SDPI POINTER_SNIPING_DPI_FORWARD
+// #endif
 
 #define ARROWS TD(TD_ARROW)
 #define DIAMS TD(TD_DIAM)

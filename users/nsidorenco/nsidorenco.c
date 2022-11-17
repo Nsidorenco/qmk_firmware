@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            _______, _______, _______, _______, _______, _______,                             _______, _______, _______, _______, _______, _______,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           _______, TO(_BASE),SNIPE,   DRAG,   KC_BTN1, KC_BTN2, _______,          _______, _______, _______,  _______, _______,TO(_BASE),_______,
+           _______, AM_END,  SNIPE,   DRAG,   KC_BTN1, KC_BTN2, _______,          _______, _______, _______,  _______, _______,TO(_BASE),_______,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                           _______, _______, _______,                   _______, _______,  _______
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -95,11 +95,8 @@ uint32_t state_reset_timer = 0;  // time to leave a state active before shutting
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
         case DRAG:
-            return true;
         case SNIPE:
-            return true;
         case DPI:
-            return true;
         case SDPI:
             return true;
         default:
@@ -367,8 +364,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case AM_END:
 #if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
                 auto_mouse_layer_off();
+                layer_clear();
 #endif
-                layer_move(_BASE);
                 return_state = false;
                 break;
             case MY_MINS:
