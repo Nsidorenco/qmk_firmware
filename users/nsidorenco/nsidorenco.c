@@ -474,7 +474,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
   };
   uint16_t COMBO_LEN = COMBO_LENGTH;
   const uint16_t PROGMEM Q_combo[] = {LT_U, KC_Y, COMBO_END};
-  const uint16_t PROGMEM Z_combo[] = {KC_Z, KC_F, COMBO_END};
+  const uint16_t PROGMEM Z_combo[] = {KC_D, LT_F, COMBO_END};
   const uint16_t PROGMEM AE_combo[] = {KC_DOT, MY_SLSH, COMBO_END};
   const uint16_t PROGMEM OE_combo[] = {KC_DOT, DK_DQT, COMBO_END};
   const uint16_t PROGMEM AA_combo[] = {MY_SLSH, DK_DQT, COMBO_END};
