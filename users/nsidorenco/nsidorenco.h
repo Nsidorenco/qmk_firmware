@@ -54,10 +54,6 @@ enum tap_dance_keycodes {
     TD_RESET,
 };
 
-#if !defined(CHARKBDIS_SAFE_RANGE)
-#define CHARYBDIS_SAFE_RANGE SAFE_RANGE
-#endif
-
 enum custom_keycodes {
     DK_CIRC = CHARYBDIS_SAFE_RANGE,
     AM_END,
