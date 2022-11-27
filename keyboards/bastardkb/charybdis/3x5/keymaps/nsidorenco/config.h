@@ -5,7 +5,7 @@
 #define CHARYBDIS_DRAGSCROLL_REVERSE_Y
 #define MOUSE_EXTENDED_REPORT
 
-#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+// #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 
 #define LAYOUT_nsidorenco(\
 K00,   K01,   K02,   K03,   K04,  K05,           K06,   K07,   K08,   K09,   K10,   K11,\
