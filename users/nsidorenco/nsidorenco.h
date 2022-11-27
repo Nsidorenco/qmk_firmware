@@ -4,7 +4,7 @@
 
 // #include "features/caps_word.h"
 #include "features/adaptive_keys.h"
-// #include "features/oneshot.h"
+#include "features/oneshot.h"
 #include "features/achordion.h"
 
 enum layers {
@@ -13,11 +13,14 @@ enum layers {
     _NAVR,
     _SYM,
     _MOUR,
+    _SPEC,
 };
 
 #define LT_R LT(_NAVR, KC_R)
 #define LT_U LT(_NUM, KC_U)
-#define LT_F LT(_MOUR, KC_F)
+#define LT_F LT(_SPEC, KC_F)
+#define LT_ENT LT(_SYM, KC_ENT)
+#define LT_X LT(_MOUR, KC_X)
 
 #define UC_CUT C(KC_X)
 #define UC_CPY C(KC_C)
@@ -53,16 +56,38 @@ enum tap_dance_keycodes {
 
 enum custom_keycodes {
     DK_CIRC = CHARYBDIS_SAFE_RANGE,
+    AM_END,
     REPEAT,
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_LALT,
+    OS_CMD,
 
     MY_SLSH,
     MY_MINS,
 };
 
+// #if !defined(DRAGSCROLL_MODE)
+// #define DRAG KC_NO
+// #else
 #define DRAG DRAGSCROLL_MODE
+// #endif
+// #if !defined(SNIPING_MODE)
+// #define SNIPE KC_NO
+// #else
 #define SNIPE SNIPING_MODE
-#define INCDPI POINTER_DEFAULT_DPI_FORWARD
-#define DECDPI POINTER_DEFAULT_DPI_REVERSE
+// #endif
+// #if !defined(POINTER_DEFAULT_DPI_FORWARD)
+// #define DPI KC_NO
+// #else
+#define DPI POINTER_DEFAULT_DPI_FORWARD
+// #endif
+// #if !defined(POINTER_SNIPING_DPI_FORWARD)
+// #define SDPI KC_NO
+// #else
+#define SDPI POINTER_SNIPING_DPI_FORWARD
+// #endif
 
 #define ARROWS TD(TD_ARROW)
 #define DIAMS TD(TD_DIAM)
