@@ -366,6 +366,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 auto_mouse_layer_off();
                 layer_clear();
 #endif
+                layer_move(_BASE);
                 return_state = false;
                 break;
             case MY_MINS:
