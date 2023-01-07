@@ -12,7 +12,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX,  KC_X,    LT_F,    KC_L,    KC_D,    KC_B,    KC_MPLY,          KC_LCMD, DK_COLN, LT_U,    KC_O,    KC_Y,    KC_K,    XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                         MO(_NAVR),  KC_R,   KC_ESC,                   MO(_SYM), KC_SPC,  XXXXXXX
+                                           KC_R,  MO(_NAVR), KC_ESC,                   MO(_SYM), KC_SPC,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
@@ -22,9 +22,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX, KC_HASH, DK_CIRC, DK_DLLR, DK_LBRC, DK_RBRC,                            XXXXXXX, REPEAT,  XXXXXXX, XXXXXXX, KC_COLN, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           XXXXXXX, DK_TILDE,DK_AT,   KC_PERC, DK_LPRN, DK_RPRN,                            XXXXXXX, OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,   XXXXXXX,
+           XXXXXXX, DK_TILDE,DK_AT,   KC_PERC, DK_LPRN, DK_RPRN,                            XXXXXXX, OS_SHFT, OS_CTRL, OS_CMD,  OS_ALT,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-           XXXXXXX, DK_TICK, ARROWS,  DIAMS,   DK_LBKT, DK_RBKT, XXXXXXX,          XXXXXXX, AM_END,  KC_ENT,  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX,
+           XXXXXXX, DK_TICK, ARROWS,  DIAMS,   DK_LBKT, DK_RBKT, XXXXXXX,          XXXXXXX, AM_END,  KC_BSPC, KC_DEL,  XXXXXXX, XXXXXXX, XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                           DK_BSLS, DK_EQL,  DK_UNDS,                   XXXXXXX, XXXXXXX, XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -50,9 +50,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX,SAFE_RST,TO(_MOUR),XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, XXXXXXX,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
+            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_BSPC,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,  KC_BSPC, KC_DEL, XXXXXXX,          XXXXXXX,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
+            XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                            XXXXXXX, XXXXXXX, XXXXXXX,                  KC_TAB,  KC_ENT,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
