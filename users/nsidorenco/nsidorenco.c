@@ -189,8 +189,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-        case LT_R:
         case MO(_SYM):
+        case MO(_NAVR):
             return true;
         default:
             return false;
@@ -199,8 +199,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case LT_R:
-        case MO(_SYM):
+        case LT_U:
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
