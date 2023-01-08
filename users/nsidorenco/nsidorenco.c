@@ -12,7 +12,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX,  KC_X,    LT_F,    KC_L,    KC_D,    KC_B,    KC_MPLY,          KC_LCMD, DK_COLN, LT_U,    KC_O,    KC_Y,    KC_K,    XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                           KC_R,  MO(_NAVR), KC_ESC,                   MO(_SYM), KC_SPC,  XXXXXXX
+                                          KC_R,  MO(_NAVR),  KC_ESC,                   MO(_SYM), KC_SPC,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
             XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX,SAFE_RST,TO(_MOUR),XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
+            XXXXXXX,SAFE_RST,XXXXXXX, XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_BSPC,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -94,6 +94,8 @@ uint32_t state_reset_timer = 0;  // time to leave a state active before shutting
 #if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
 bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
+        case LT_U:
+            return false;
         case DRAG:
         case SNIPE:
         case DPI:
@@ -363,9 +365,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case AM_END:
 #if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
                 auto_mouse_layer_off();
-                layer_clear();
-#endif
+#else
                 layer_move(_BASE);
+#endif
                 return_state = false;
                 break;
             case MY_MINS:
