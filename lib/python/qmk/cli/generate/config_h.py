@@ -15,7 +15,12 @@ from qmk.constants import GPL2_HEADER_C_LIKE, GENERATED_HEADER_C_LIKE
 
 
 def generate_define(define, value=None):
+    is_keymap = cli.args.filename
     value = f' {value}' if value is not None else ''
+    if is_keymap:
+        return f"""
+#undef {define}
+#define {define}{value}"""
     return f"""
 #ifndef {define}
 #    define {define}{value}
@@ -62,9 +67,15 @@ def matrix_pins(matrix_pins, postfix=''):
 def generate_matrix_size(kb_info_json, config_h_lines):
     """Add the matrix size to the config.h.
     """
-    if 'matrix_pins' in kb_info_json:
+    if 'matrix_size' in kb_info_json:
         config_h_lines.append(generate_define('MATRIX_COLS', kb_info_json['matrix_size']['cols']))
         config_h_lines.append(generate_define('MATRIX_ROWS', kb_info_json['matrix_size']['rows']))
+
+
+def generate_matrix_masked(kb_info_json, config_h_lines):
+    """"Enable matrix mask if required"""
+    if 'matrix_grid' in kb_info_json.get('dip_switch', {}):
+        config_h_lines.append(generate_define('MATRIX_MASKED'))
 
 
 def generate_config_items(kb_info_json, config_h_lines):
@@ -75,9 +86,9 @@ def generate_config_items(kb_info_json, config_h_lines):
     for config_key, info_dict in info_config_map.items():
         info_key = info_dict['info_key']
         key_type = info_dict.get('value_type', 'raw')
-        to_config = info_dict.get('to_config', True)
+        to_c = info_dict.get('to_c', True)
 
-        if not to_config:
+        if not to_c:
             continue
 
         try:
@@ -119,7 +130,9 @@ def generate_encoder_config(encoder_json, config_h_lines, postfix=''):
     config_h_lines.append(generate_define(f'ENCODERS_PAD_B{postfix}', f'{{ {", ".join(b_pads)} }}'))
 
     if None in resolutions:
-        cli.log.debug("Unable to generate ENCODER_RESOLUTION configuration")
+        cli.log.debug(f"Unable to generate ENCODER_RESOLUTION{postfix} configuration")
+    elif len(resolutions) == 0:
+        cli.log.debug(f"Skipping ENCODER_RESOLUTION{postfix} configuration")
     elif len(set(resolutions)) == 1:
         config_h_lines.append(generate_define(f'ENCODER_RESOLUTION{postfix}', resolutions[0]))
     else:
@@ -128,24 +141,6 @@ def generate_encoder_config(encoder_json, config_h_lines, postfix=''):
 
 def generate_split_config(kb_info_json, config_h_lines):
     """Generate the config.h lines for split boards."""
-    if 'primary' in kb_info_json['split']:
-        if kb_info_json['split']['primary'] in ('left', 'right'):
-            config_h_lines.append('')
-            config_h_lines.append('#ifndef MASTER_LEFT')
-            config_h_lines.append('#    ifndef MASTER_RIGHT')
-            if kb_info_json['split']['primary'] == 'left':
-                config_h_lines.append('#        define MASTER_LEFT')
-            elif kb_info_json['split']['primary'] == 'right':
-                config_h_lines.append('#        define MASTER_RIGHT')
-            config_h_lines.append('#    endif // MASTER_RIGHT')
-            config_h_lines.append('#endif // MASTER_LEFT')
-        elif kb_info_json['split']['primary'] == 'pin':
-            config_h_lines.append(generate_define('SPLIT_HAND_PIN'))
-        elif kb_info_json['split']['primary'] == 'matrix_grid':
-            config_h_lines.append(generate_define('SPLIT_HAND_MATRIX_GRID', f'{{ {",".join(kb_info_json["split"]["matrix_grid"])} }}'))
-        elif kb_info_json['split']['primary'] == 'eeprom':
-            config_h_lines.append(generate_define('EE_HANDS'))
-
     if 'protocol' in kb_info_json['split'].get('transport', {}):
         if kb_info_json['split']['transport']['protocol'] == 'i2c':
             config_h_lines.append(generate_define('USE_I2C'))
@@ -188,6 +183,8 @@ def generate_config_h(cli):
     generate_config_items(kb_info_json, config_h_lines)
 
     generate_matrix_size(kb_info_json, config_h_lines)
+
+    generate_matrix_masked(kb_info_json, config_h_lines)
 
     if 'matrix_pins' in kb_info_json:
         config_h_lines.append(matrix_pins(kb_info_json['matrix_pins']))
