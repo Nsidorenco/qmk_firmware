@@ -12,7 +12,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
            XXXXXXX,  KC_X,    LT_F,    KC_L,    KC_D,    KC_B,    KC_MPLY,          KC_LCMD, DK_COLN, LT_U,    KC_O,    KC_Y,    KC_K,    XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                          KC_R,  MO(_NAVR),  KC_ESC,                   MO(_SYM), KC_SPC,  XXXXXXX
+                                          KC_R,  MO(_NAVR),  KC_BSPC,                  MO(_SYM), KC_SPC,  XXXXXXX
                                       // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
         ),
 
@@ -48,9 +48,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
             XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX,SAFE_RST,XXXXXXX, XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
+            XXXXXXX,SAFE_RST,TO(_MOUR),XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_BSPC,                            KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
+            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_ESC,                             KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -202,6 +202,8 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         case LT_U:
+        case MO(_SYM):
+        case MO(_NAVR):
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
@@ -223,54 +225,7 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) { return 400; }
 
-// #define GET_TAP_KC(dual_role_key) dual_role_key & 0xFF
-// uint16_t last_keycode = KC_NO;
-// uint8_t last_modifier = 0;
-//
 uint8_t mod_state;
-// uint8_t oneshot_mod_state;
-//
-// void process_repeat_key(uint16_t keycode, const keyrecord_t *record) {
-//     if (keycode != REPEAT) {
-//         // Early return when holding down a pure layer key
-//         // to retain modifiers
-//         switch (keycode) {
-//             case QK_DEF_LAYER ... QK_DEF_LAYER_MAX:
-//             case QK_MOMENTARY ... QK_MOMENTARY_MAX:
-//             case QK_LAYER_MOD ... QK_LAYER_MOD_MAX:
-//             case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
-//             case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
-//             case QK_TO ... QK_TO_MAX:
-//             case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
-//             case LT_R:
-//             case KC_BSPC:
-//                 return;
-//         }
-//         // last_modifier = oneshot_mod_state > mod_state ? oneshot_mod_state : mod_state;
-//         last_modifier = mod_state;
-//         switch (keycode) {
-//             case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-//             case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-//                 if (record->event.pressed) {
-//                     last_keycode = GET_TAP_KC(keycode);
-//                 }
-//                 break;
-//             default:
-//                 if (record->event.pressed) {
-//                     last_keycode = keycode;
-//                 }
-//                 break;
-//         }
-//     } else { // keycode == REPEAT
-//         if (record->event.pressed) {
-//             register_mods(last_modifier);
-//             register_code16(last_keycode);
-//         } else {
-//             unregister_code16(last_keycode);
-//             unregister_mods(last_modifier);
-//         }
-//     }
-// }
 
 oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
@@ -281,12 +236,8 @@ oneshot_state os_cmd_state = os_up_unqueued;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     bool return_state = true;
     mod_state = get_mods();
-    // oneshot_mod_state = get_oneshot_mods();
 
     bool is_shifted = (mod_state & MOD_MASK_SHIFT);
-    // bool is_shifted = (mod_state & MOD_MASK_SHIFT) || (oneshot_mod_state & MOD_MASK_SHIFT);
-
-    // process_repeat_key(keycode, record);
 
     update_oneshot(&os_shft_state, KC_LSFT, OS_SHFT, keycode, record);
     update_oneshot(&os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record);
@@ -493,3 +444,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
   };
 // #    include "g/keymap_combo.h"  // to make combo def dictionary work
 #endif
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
+}
