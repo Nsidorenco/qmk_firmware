@@ -18,7 +18,7 @@
 #include "drivers/led/issi/is31fl3731.h"
 
 #ifdef RGB_MATRIX_ENABLE
-const is31fl3731_led_t PROGMEM g_is31fl3731_leds[RGB_MATRIX_LED_COUNT] = {
+const is31fl3731_led_t PROGMEM g_is31fl3731_leds[IS31FL3731_LED_COUNT] = {
 /* Refer to IS31 manual for these locations
  *   driver
  *   |  R location
@@ -146,10 +146,10 @@ led_config_t g_led_config = { {
 static void init(void) {
     i2c_init();
 
-    is31fl3731_init(IS31FL3731_I2C_ADDRESS_1);
-    is31fl3731_init(IS31FL3731_I2C_ADDRESS_2);
+    is31fl3731_init(0);
+    is31fl3731_init(1);
 
-    for (int index = 0; index < ISSI_DRIVER_TOTAL; index++) {
+    for (int index = 0; index < IS31FL3731_LED_COUNT; index++) {
         bool enabled = !(   ( index == 18+5) || //B5
                             ( index == 36+17) || //C17
                             ( index == 54+13) //D13
@@ -157,8 +157,8 @@ static void init(void) {
         is31fl3731_set_led_control_register(index, enabled, enabled, enabled);
     }
 
-    is31fl3731_update_led_control_registers(IS31FL3731_I2C_ADDRESS_1, 0);
-    is31fl3731_update_led_control_registers(IS31FL3731_I2C_ADDRESS_2, 1);
+    is31fl3731_update_led_control_registers(0);
+    is31fl3731_update_led_control_registers(1);
 }
 
 const rgb_matrix_driver_t rgb_matrix_driver = {

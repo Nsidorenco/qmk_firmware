@@ -9,21 +9,25 @@ from qmk.path import normpath
 from qmk.constants import GPL2_HEADER_C_LIKE, GENERATED_HEADER_C_LIKE
 
 
-def _gen_led_config(info_data):
+def _gen_led_configs(info_data):
+    lines = []
+
+    if 'layout' in info_data.get('rgb_matrix', {}):
+        lines.extend(_gen_led_config(info_data, 'rgb_matrix'))
+
+    if 'layout' in info_data.get('led_matrix', {}):
+        lines.extend(_gen_led_config(info_data, 'led_matrix'))
+
+    return lines
+
+
+def _gen_led_config(info_data, config_type):
     """Convert info.json content to g_led_config
     """
     cols = info_data['matrix_size']['cols']
     rows = info_data['matrix_size']['rows']
 
-    config_type = None
-    if 'layout' in info_data.get('rgb_matrix', {}):
-        config_type = 'rgb_matrix'
-    elif 'layout' in info_data.get('led_matrix', {}):
-        config_type = 'led_matrix'
-
     lines = []
-    if not config_type:
-        return lines
 
     matrix = [['NO_LED'] * cols for _ in range(rows)]
     pos = []
@@ -53,6 +57,7 @@ def _gen_led_config(info_data):
     lines.append(f'  {{ {", ".join(flags)} }},')
     lines.append('};')
     lines.append('#endif')
+    lines.append('')
 
     return lines
 
@@ -63,13 +68,17 @@ def _gen_matrix_mask(info_data):
     cols = info_data['matrix_size']['cols']
     rows = info_data['matrix_size']['rows']
 
-    # Default mask to everything enabled
-    mask = [['1'] * cols for i in range(rows)]
+    # Default mask to everything disabled
+    mask = [['0'] * cols for _ in range(rows)]
 
-    # Automatically mask out dip_switch.matrix_grid locations
-    matrix_grid = info_data.get('dip_switch', {}).get('matrix_grid', [])
-    for row, col in matrix_grid:
-        mask[row][col] = '0'
+    # Mirror layout macros squashed on top of each other
+    for layout_name, layout_data in info_data['layouts'].items():
+        for key_data in layout_data['layout']:
+            row, col = key_data['matrix']
+            if row >= rows or col >= cols:
+                cli.log.error(f'Skipping matrix_mask due to {layout_name} containing invalid matrix values')
+                return []
+            mask[row][col] = '1'
 
     lines = []
     lines.append('#ifdef MATRIX_MASKED')
@@ -94,7 +103,7 @@ def generate_keyboard_c(cli):
     # Build the layouts.h file.
     keyboard_h_lines = [GPL2_HEADER_C_LIKE, GENERATED_HEADER_C_LIKE, '#include QMK_KEYBOARD_H', '']
 
-    keyboard_h_lines.extend(_gen_led_config(kb_info_json))
+    keyboard_h_lines.extend(_gen_led_configs(kb_info_json))
     keyboard_h_lines.extend(_gen_matrix_mask(kb_info_json))
 
     # Show the results

@@ -119,7 +119,7 @@ MAIN_KEYMAP_PATH_3 := $(KEYBOARD_PATH_3)/keymaps/$(KEYMAP)
 MAIN_KEYMAP_PATH_4 := $(KEYBOARD_PATH_4)/keymaps/$(KEYMAP)
 MAIN_KEYMAP_PATH_5 := $(KEYBOARD_PATH_5)/keymaps/$(KEYMAP)
 
-# Pull in rules from info.json
+# Pull in rules from DD keyboard config
 INFO_RULES_MK = $(shell $(QMK_BIN) generate-rules-mk --quiet --escape --keyboard $(KEYBOARD) --output $(INTERMEDIATE_OUTPUT)/src/info_rules.mk)
 include $(INFO_RULES_MK)
 
@@ -127,34 +127,60 @@ include $(INFO_RULES_MK)
 include $(BUILDDEFS_PATH)/build_json.mk
 
 # Pull in keymap level rules.mk
-# Look through the possible keymap folders until we find a matching keymap.c
-ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
-    -include $(MAIN_KEYMAP_PATH_1)/rules.mk
-    KEYMAP_C := $(MAIN_KEYMAP_PATH_1)/keymap.c
-    KEYMAP_PATH := $(MAIN_KEYMAP_PATH_1)
-else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_2)/keymap.c)","")
-    -include $(MAIN_KEYMAP_PATH_2)/rules.mk
-    KEYMAP_C := $(MAIN_KEYMAP_PATH_2)/keymap.c
-    KEYMAP_PATH := $(MAIN_KEYMAP_PATH_2)
-else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_3)/keymap.c)","")
-    -include $(MAIN_KEYMAP_PATH_3)/rules.mk
-    KEYMAP_C := $(MAIN_KEYMAP_PATH_3)/keymap.c
-    KEYMAP_PATH := $(MAIN_KEYMAP_PATH_3)
-else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_4)/keymap.c)","")
-    -include $(MAIN_KEYMAP_PATH_4)/rules.mk
-    KEYMAP_C := $(MAIN_KEYMAP_PATH_4)/keymap.c
-    KEYMAP_PATH := $(MAIN_KEYMAP_PATH_4)
-else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_5)/keymap.c)","")
-    -include $(MAIN_KEYMAP_PATH_5)/rules.mk
-    KEYMAP_C := $(MAIN_KEYMAP_PATH_5)/keymap.c
-    KEYMAP_PATH := $(MAIN_KEYMAP_PATH_5)
-else ifneq ($(LAYOUTS),)
-    # If we haven't found a keymap yet fall back to community layouts
-    include $(BUILDDEFS_PATH)/build_layout.mk
-# Not finding keymap.c is fine if we found a keymap.json
-else ifeq ("$(wildcard $(KEYMAP_JSON_PATH))", "")
-    $(call CATASTROPHIC_ERROR,Invalid keymap,Could not find keymap)
-    # this state should never be reached
+ifeq ("$(wildcard $(KEYMAP_PATH))", "")
+    # Look through the possible keymap folders until we find a matching keymap.c
+    ifneq ($(QMK_USERSPACE),)
+        ifneq ("$(wildcard $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_1)/keymap.c)","")
+            -include $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_1)/rules.mk
+            KEYMAP_C := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_1)/keymap.c
+            KEYMAP_PATH := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_1)
+        else ifneq ("$(wildcard $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_2)/keymap.c)","")
+            -include $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_2)/rules.mk
+            KEYMAP_C := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_2)/keymap.c
+            KEYMAP_PATH := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_2)
+        else ifneq ("$(wildcard $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_3)/keymap.c)","")
+            -include $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_3)/rules.mk
+            KEYMAP_C := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_3)/keymap.c
+            KEYMAP_PATH := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_3)
+        else ifneq ("$(wildcard $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_4)/keymap.c)","")
+            -include $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_4)/rules.mk
+            KEYMAP_C := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_4)/keymap.c
+            KEYMAP_PATH := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_4)
+        else ifneq ("$(wildcard $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_5)/keymap.c)","")
+            -include $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_5)/rules.mk
+            KEYMAP_C := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_5)/keymap.c
+            KEYMAP_PATH := $(QMK_USERSPACE)/$(MAIN_KEYMAP_PATH_5)
+        endif
+    endif
+    ifeq ($(KEYMAP_PATH),)
+        ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
+            -include $(MAIN_KEYMAP_PATH_1)/rules.mk
+            KEYMAP_C := $(MAIN_KEYMAP_PATH_1)/keymap.c
+            KEYMAP_PATH := $(MAIN_KEYMAP_PATH_1)
+        else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_2)/keymap.c)","")
+            -include $(MAIN_KEYMAP_PATH_2)/rules.mk
+            KEYMAP_C := $(MAIN_KEYMAP_PATH_2)/keymap.c
+            KEYMAP_PATH := $(MAIN_KEYMAP_PATH_2)
+        else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_3)/keymap.c)","")
+            -include $(MAIN_KEYMAP_PATH_3)/rules.mk
+            KEYMAP_C := $(MAIN_KEYMAP_PATH_3)/keymap.c
+            KEYMAP_PATH := $(MAIN_KEYMAP_PATH_3)
+        else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_4)/keymap.c)","")
+            -include $(MAIN_KEYMAP_PATH_4)/rules.mk
+            KEYMAP_C := $(MAIN_KEYMAP_PATH_4)/keymap.c
+            KEYMAP_PATH := $(MAIN_KEYMAP_PATH_4)
+        else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_5)/keymap.c)","")
+            -include $(MAIN_KEYMAP_PATH_5)/rules.mk
+            KEYMAP_C := $(MAIN_KEYMAP_PATH_5)/keymap.c
+            KEYMAP_PATH := $(MAIN_KEYMAP_PATH_5)
+        else ifneq ($(LAYOUTS),)
+            # If we haven't found a keymap yet fall back to community layouts
+            include $(BUILDDEFS_PATH)/build_layout.mk
+        else ifeq ("$(wildcard $(KEYMAP_JSON_PATH))", "") # Not finding keymap.c is fine if we found a keymap.json
+            $(call CATASTROPHIC_ERROR,Invalid keymap,Could not find keymap)
+            # this state should never be reached
+        endif
+    endif
 endif
 
 # Have we found a keymap.json?
@@ -195,7 +221,7 @@ include $(BUILDDEFS_PATH)/converters.mk
 MCU_ORIG := $(MCU)
 include $(wildcard $(PLATFORM_PATH)/*/mcu_selection.mk)
 
-# PLATFORM_KEY should be detected in info.json via key 'processor' (or rules.mk 'MCU')
+# PLATFORM_KEY should be detected in DD keyboard config via key 'processor' (or rules.mk 'MCU')
 ifeq ($(PLATFORM_KEY),)
     $(call CATASTROPHIC_ERROR,Platform not defined)
 endif
@@ -309,38 +335,54 @@ ifneq ("$(wildcard $(KEYBOARD_PATH_5)/post_config.h)","")
     POST_CONFIG_H += $(KEYBOARD_PATH_5)/post_config.h
 endif
 
-# Pull in stuff from info.json
-INFO_JSON_FILES :=
+# Create dependencies on DD keyboard config - structure validated elsewhere
+DD_CONFIG_FILES :=
 ifneq ("$(wildcard $(KEYBOARD_PATH_1)/info.json)","")
-    INFO_JSON_FILES += $(KEYBOARD_PATH_1)/info.json
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_1)/info.json
 endif
 ifneq ("$(wildcard $(KEYBOARD_PATH_2)/info.json)","")
-    INFO_JSON_FILES += $(KEYBOARD_PATH_2)/info.json
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_2)/info.json
 endif
 ifneq ("$(wildcard $(KEYBOARD_PATH_3)/info.json)","")
-    INFO_JSON_FILES += $(KEYBOARD_PATH_3)/info.json
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_3)/info.json
 endif
 ifneq ("$(wildcard $(KEYBOARD_PATH_4)/info.json)","")
-    INFO_JSON_FILES += $(KEYBOARD_PATH_4)/info.json
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_4)/info.json
 endif
 ifneq ("$(wildcard $(KEYBOARD_PATH_5)/info.json)","")
-    INFO_JSON_FILES += $(KEYBOARD_PATH_5)/info.json
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_5)/info.json
+endif
+
+ifneq ("$(wildcard $(KEYBOARD_PATH_1)/keyboard.json)","")
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_1)/keyboard.json
+endif
+ifneq ("$(wildcard $(KEYBOARD_PATH_2)/keyboard.json)","")
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_2)/keyboard.json
+endif
+ifneq ("$(wildcard $(KEYBOARD_PATH_3)/keyboard.json)","")
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_3)/keyboard.json
+endif
+ifneq ("$(wildcard $(KEYBOARD_PATH_4)/keyboard.json)","")
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_4)/keyboard.json
+endif
+ifneq ("$(wildcard $(KEYBOARD_PATH_5)/keyboard.json)","")
+    DD_CONFIG_FILES += $(KEYBOARD_PATH_5)/keyboard.json
 endif
 
 CONFIG_H += $(INTERMEDIATE_OUTPUT)/src/info_config.h
 KEYBOARD_SRC += $(INTERMEDIATE_OUTPUT)/src/default_keyboard.c
 
-$(INTERMEDIATE_OUTPUT)/src/info_config.h: $(INFO_JSON_FILES)
+$(INTERMEDIATE_OUTPUT)/src/info_config.h: $(DD_CONFIG_FILES)
 	@$(SILENT) || printf "$(MSG_GENERATING) $@" | $(AWK_CMD)
 	$(eval CMD=$(QMK_BIN) generate-config-h --quiet --keyboard $(KEYBOARD) --output $(INTERMEDIATE_OUTPUT)/src/info_config.h)
 	@$(BUILD_CMD)
 
-$(INTERMEDIATE_OUTPUT)/src/default_keyboard.c: $(INFO_JSON_FILES)
+$(INTERMEDIATE_OUTPUT)/src/default_keyboard.c: $(DD_CONFIG_FILES)
 	@$(SILENT) || printf "$(MSG_GENERATING) $@" | $(AWK_CMD)
 	$(eval CMD=$(QMK_BIN) generate-keyboard-c --quiet --keyboard $(KEYBOARD) --output $(INTERMEDIATE_OUTPUT)/src/default_keyboard.c)
 	@$(BUILD_CMD)
 
-$(INTERMEDIATE_OUTPUT)/src/default_keyboard.h: $(INFO_JSON_FILES)
+$(INTERMEDIATE_OUTPUT)/src/default_keyboard.h: $(DD_CONFIG_FILES)
 	@$(SILENT) || printf "$(MSG_GENERATING) $@" | $(AWK_CMD)
 	$(eval CMD=$(QMK_BIN) generate-keyboard-h --quiet --keyboard $(KEYBOARD) --include $(FOUND_KEYBOARD_H) --output $(INTERMEDIATE_OUTPUT)/src/default_keyboard.h)
 	@$(BUILD_CMD)
@@ -363,6 +405,16 @@ ifeq ("$(USER_NAME)","")
     USER_NAME := $(KEYMAP)
 endif
 USER_PATH := users/$(USER_NAME)
+
+# If we have userspace, then add it to the lookup VPATH
+ifneq ($(wildcard $(QMK_USERSPACE)),)
+    VPATH += $(QMK_USERSPACE)
+endif
+
+# If the equivalent users directory exists in userspace, use that in preference to anything currently in the main repo
+ifneq ($(wildcard $(QMK_USERSPACE)/$(USER_PATH)),)
+    USER_PATH := $(QMK_USERSPACE)/$(USER_PATH)
+endif
 
 # Pull in user level rules.mk
 -include $(USER_PATH)/rules.mk
@@ -402,6 +454,10 @@ ifneq ("$(wildcard $(KEYMAP_PATH)/config.h)","")
 endif
 ifneq ("$(KEYMAP_H)","")
     CONFIG_H += $(KEYMAP_H)
+endif
+
+ifeq ($(KEYMAP_C),)
+    $(call CATASTROPHIC_ERROR,Invalid keymap,Could not find keymap)
 endif
 
 OPT_DEFS += -DKEYMAP_C=\"$(KEYMAP_C)\"

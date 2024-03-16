@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WS2812_PWM_DRIVER PWMD3  // default: PWMD2
 #define WS2812_PWM_CHANNEL 2  // default: 2
 #define WS2812_PWM_PAL_MODE 2  // Pin "alternate function", see the respective datasheet for the appropriate values for your MCU. default: 2
-#define WS2812_DMA_STREAM STM32_DMA1_STREAM3  // DMA Stream for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
-#define WS2812_DMA_CHANNEL 3  // DMA Channel for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
+#define WS2812_PWM_DMA_STREAM STM32_DMA1_STREAM3  // DMA Stream for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
+#define WS2812_PWM_DMA_CHANNEL 3  // DMA Channel for TIMx_UP, see the respective reference manual for the appropriate values for your MCU.
 
 /* Backlight options */
 
@@ -58,8 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define IS31FL3733_I2C_ADDRESS_1 IS31FL3733_I2C_ADDRESS_GND_GND
 #define IS31FL3733_I2C_ADDRESS_2 IS31FL3733_I2C_ADDRESS_GND_SDA
-#define IS31FL3733_DRIVER_COUNT 2
-#define RGB_MATRIX_LED_COUNT 128
+#define IS31FL3733_LED_COUNT 128
 
 // These define which keys in the matrix are alphas/mods
 // Used for backlight effects so colors are different for

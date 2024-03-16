@@ -22,10 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keycode.h"
 #include "util.h"
 
+#ifdef JOYSTICK_ENABLE
+#    include "joystick.h"
+#endif
+
 // clang-format off
 
 /* HID report IDs */
-enum hid_report_ids {
+enum hid_report_ids { 
+    REPORT_ID_ALL = 0,
     REPORT_ID_KEYBOARD = 1,
     REPORT_ID_MOUSE,
     REPORT_ID_SYSTEM,
@@ -33,8 +38,11 @@ enum hid_report_ids {
     REPORT_ID_PROGRAMMABLE_BUTTON,
     REPORT_ID_NKRO,
     REPORT_ID_JOYSTICK,
-    REPORT_ID_DIGITIZER
+    REPORT_ID_DIGITIZER,
+    REPORT_ID_COUNT = REPORT_ID_DIGITIZER
 };
+
+#define IS_VALID_REPORT_ID(id) ((id) >= REPORT_ID_ALL && (id) <= REPORT_ID_COUNT)
 
 /* Mouse buttons */
 #define MOUSE_BTN_MASK(n) (1 << (n))
@@ -218,16 +226,18 @@ typedef struct {
     uint16_t y;
 } PACKED report_digitizer_t;
 
+#if JOYSTICK_AXIS_RESOLUTION > 8
+typedef int16_t joystick_axis_t;
+#else
+typedef int8_t joystick_axis_t;
+#endif
+
 typedef struct {
 #ifdef JOYSTICK_SHARED_EP
     uint8_t report_id;
 #endif
 #if JOYSTICK_AXIS_COUNT > 0
-#    if JOYSTICK_AXIS_RESOLUTION > 8
-    int16_t axes[JOYSTICK_AXIS_COUNT];
-#    else
-    int8_t axes[JOYSTICK_AXIS_COUNT];
-#    endif
+    joystick_axis_t axes[JOYSTICK_AXIS_COUNT];
 #endif
 
 #if JOYSTICK_BUTTON_COUNT > 0
