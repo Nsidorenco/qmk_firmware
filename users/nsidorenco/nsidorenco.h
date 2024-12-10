@@ -55,7 +55,7 @@ enum tap_dance_keycodes {
 };
 
 enum custom_keycodes {
-    DK_CIRC = CHARYBDIS_SAFE_RANGE,
+    DK_CIRC = SAFE_RANGE,
     AM_END,
     REPEAT,
     OS_SHFT,

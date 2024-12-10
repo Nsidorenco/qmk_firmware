@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX,SAFE_RST,TO(_MOUR),XXXXXXX, XXXXXXX, LCA(KC_DEL),                        UC_CUT,  UC_CPY,  UC_PST,  UC_UND,  UC_RDO,  XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_ESC,                             KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CAPSWRD, XXXXXXX,
+            XXXXXXX, OS_LALT, OS_CMD,  OS_CTRL, OS_SHFT, KC_ESC,                             KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, CW_TOGG, XXXXXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
             XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  XXXXXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -133,7 +133,7 @@ bool caps_word_press_user(uint16_t keycode) {
     }
 }
 
-void td_arrow(qk_tap_dance_state_t *state, void *user_data) {
+void td_arrow(tap_dance_state_t *state, void *user_data) {
     uint8_t mod_state = get_mods();
     bool is_shifted = (mod_state & MOD_MASK_SHIFT);
     // uint8_t oneshot_mod_state = get_oneshot_mods();
@@ -159,7 +159,7 @@ void td_arrow(qk_tap_dance_state_t *state, void *user_data) {
     reset_tap_dance(state);
 }
 
-void td_diam(qk_tap_dance_state_t *state, void *user_data) {
+void td_diam(tap_dance_state_t *state, void *user_data) {
     uint8_t mod_state = get_mods();
     // uint8_t oneshot_mod_state = get_oneshot_mods();
     clear_mods();
@@ -177,13 +177,13 @@ void td_diam(qk_tap_dance_state_t *state, void *user_data) {
     reset_tap_dance(state);
 }
 
-void td_reset(qk_tap_dance_state_t *state, void *user_data) {
+void td_reset(tap_dance_state_t *state, void *user_data) {
     if (state->count >= 5) {
         reset_keyboard();
     }
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_ARROW] = ACTION_TAP_DANCE_FN(td_arrow),
     [TD_DIAM] = ACTION_TAP_DANCE_FN(td_diam),
     [TD_RESET] = ACTION_TAP_DANCE_FN(td_reset),
