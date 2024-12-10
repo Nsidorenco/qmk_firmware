@@ -22,11 +22,11 @@ enum layers {
 #define LT_ENT LT(_SYM, KC_ENT)
 #define LT_X LT(_MOUR, KC_X)
 
-#define UC_CUT C(KC_X)
-#define UC_CPY C(KC_C)
-#define UC_PST C(KC_V)
-#define UC_UND C(KC_Z)
-#define UC_RDO S(C(KC_Z))
+#define UC_CUT LCMD(KC_X)
+#define UC_CPY LCMD(KC_C)
+#define UC_PST LCMD(KC_V)
+#define UC_UND LCMD(KC_Z)
+#define UC_RDO S(LCMD(KC_Z))
 
 #define DK_LT KC_NUBS
 #define DK_GT S(DK_LT)
@@ -55,7 +55,7 @@ enum tap_dance_keycodes {
 };
 
 enum custom_keycodes {
-    DK_CIRC = CHARYBDIS_SAFE_RANGE,
+    DK_CIRC = SAFE_RANGE,
     AM_END,
     REPEAT,
     OS_SHFT,
